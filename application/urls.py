@@ -1,6 +1,7 @@
 from django.urls import path,include
 from django.views.generic.base import TemplateView
-from . import views, activate
+from . import views
+from . views import activate
 urlpatterns = [
 path('index/', views.index, name="index"),
 path('about/', views.about, name="about"),
