@@ -118,8 +118,8 @@ cloudinary.config(
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'timothy.nthiga@student.moringaschool.com'
-EMAIL_HOST_PASSWORD = 'Timoh@1997'
+EMAIL_HOST_USER = 'onlinebizna4developers@gmail.com'
+EMAIL_HOST_PASSWORD = 'biznabizna12345'
 EMAIL_PORT = 587
 
 

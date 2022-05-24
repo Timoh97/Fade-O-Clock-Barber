@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse  
 from django.shortcuts import render, redirect  
 from django.contrib.auth import login, authenticate  
-from .forms import SignupForm  
+from .forms import SignupForm , LoginForm
 from django.contrib.sites.shortcuts import get_current_site  
 from django.utils.encoding import force_bytes, force_text  
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
@@ -72,6 +72,25 @@ def signup(request):
     else:  
         form = SignupForm()  
     return render(request, 'signup.html', {'form': form}) 
+
+
+def loginView(request):
+	if request.method == "POST":
+		form = LoginForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data.get('username')
+			password = form.cleaned_data.get('password')
+			user = authenticate(username=username, password=password)
+			if user is not None:
+				login(request, user)
+				messages.info(request, f"You are now logged in as {username}.")
+				return redirect("/")
+			else:
+				messages.error(request,"Invalid username or password.")
+		else:
+			messages.error(request,"Invalid username or password.")
+	form = LoginForm()
+	return render(request=request, template_name="registration/login.html",context= {"form":form})
 
 #create activation view
 def activate(request, uidb64, token):  
