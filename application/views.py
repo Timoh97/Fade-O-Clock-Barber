@@ -91,7 +91,7 @@ def loginView(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = LoginForm()
-	return render(request=request, template_name="registration/login.html",context= {"form":form})
+	return render(request=request, template_name="login.html",context= {"form":form})
 
 #create activation view
 def activate(request, uidb64, token):  

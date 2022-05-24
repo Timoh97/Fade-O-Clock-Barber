@@ -9,6 +9,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+virtual/
 downloads/
 eggs/
 .eggs/

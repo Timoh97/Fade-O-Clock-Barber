@@ -9,6 +9,7 @@ path('contact/', views.contact, name="contact"),
 path('pricing/', views.pricing, name="pricing"),
 path('services/', views.services, name="services"),
 path('signup/', views.signup, name="signup"),
+path('login/', views.loginView, name="login"),
 
 #registration
 path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
