@@ -4,4 +4,18 @@ from django.shortcuts import render
 
 def index(request):
 
-	return render(request=request, template_name="index.html")
+        
+    return render(request,'index.html')
+
+
+def contact(request):
+    return('contact.html',request)
+
+def pricing (request):
+    return('pricing.html',request)
+
+def services (request):
+    return('services.html',request)
+
+def about (request):
+    return('about.html',request)
