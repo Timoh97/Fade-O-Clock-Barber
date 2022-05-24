@@ -15,7 +15,7 @@ def pricing (request):
     return('pricing.html',request)
 
 def services (request):
-    return('services.html',request)
+    return(request,'services.html')
 
 def about (request):
     return('about.html',request)

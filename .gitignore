@@ -18,6 +18,7 @@ parts/
 sdist/
 var/
 wheels/
+virtual/
 *.egg-info/
 .installed.cfg
 *.egg
