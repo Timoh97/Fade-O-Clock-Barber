@@ -35,7 +35,7 @@ HTML
 
 ## INSTALLATION AND SET UP
 
-Git clone the repository at git@github.com:Timoh97/BOOKSTORE.git
+Git clone the repository at https://github.com/Timoh97/SmartBarbz.git
 
 
 #### CREATION AND ACTIVATION OF VIRTUAL ENVIRONMENT
