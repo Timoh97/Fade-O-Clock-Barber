@@ -33,16 +33,16 @@ def index(request):
 
 
 def contact(request):
-    return('contact.html',request)
+    return(request,'contact.html')
 
 def pricing (request):
-    return('pricing.html',request)
+    return(request,'pricing.html')
 
 def services (request):
     return(request,'services.html')
 
 def about (request):
-    return('about.html',request)
+    return(request,'about.html')
 
 
 #registration
@@ -106,4 +106,4 @@ def activate(request, uidb64, token):
         user.save()  
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')  
     else:  
-        return HttpResponse('Activation link is invalid!',request) 
+        return HttpResponse(request,'Activation link is invalid!') 
