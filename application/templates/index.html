@@ -72,11 +72,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">HOME</a>
-            <a class="nav-item nav-link" href="#">SERVICES</a>
-            <a class="nav-item nav-link" href="#">ABOUT</a>
-            <a class="nav-item nav-link" href="#">PRICING</a>
-            <a class="nav-item nav-link" href="#">CONTACT US</a>
+            <a class="nav-item nav-link" href="{% url 'index' %}">HOME</a>
+            <a class="nav-item nav-link" href="{% url 'services' %}">SERVICES</a>
+            <a class="nav-item nav-link" href="{% url 'about' %}">ABOUT</a>
+            <a class="nav-item nav-link" href="{% url 'pricing' %}">PRICING</a>
+            <a class="nav-item nav-link" href="{% url 'contact' %}">CONTACT US</a>
             <a class="nav-item nav-link" href="{% url 'signup' %}">SIGN UP</a>
           </div>
         </div>
