@@ -46,6 +46,13 @@ def pricing(request):
 def services(request):
     
     return render(request,'services.html')
+def profile(request):
+    
+    return render(request,'profile.html')
+
+def styles(request):
+    
+    return render(request,'styles.html')
 
 
 
