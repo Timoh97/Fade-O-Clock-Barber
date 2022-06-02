@@ -23,3 +23,15 @@ class LoginForm(forms.Form):
             }
         )
     )
+    
+    
+    
+    class AppointmentForm(UserCreationForm):
+      description= forms.CharField(error_messages={'required': 'Please enter appointment description'})
+      contact= forms.IntegerField(error_messages={'required': 'Please enter your phone number'})
+      username= forms.CharField(error_messages={'required': 'Please enter your usernamename'})
+      
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields=['first_name','last_name','username','email','password1','password2']

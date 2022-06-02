@@ -34,3 +34,24 @@ class Profile(models.Model):
   
   def __str__(self):
     return self.bio
+
+class Appointment(models.Model):
+  
+  description = models.TextField()
+  username = models.CharField(max_length=50)
+  contact = models.IntegerField(max_length=30)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  created_at = models.DateTimeField(auto_now_add=True)
+  
+  
+   # save profile method
+  def save_appointment(self):
+    self.save()
+    
+  # Save profile method
+  def delete_appointment(self):
+    self.delete()
+    
+    
+  def __str__(self):
+    return self.description
