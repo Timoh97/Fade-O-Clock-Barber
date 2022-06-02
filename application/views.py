@@ -27,22 +27,27 @@ from django.contrib import messages
 # Create your views here.
 
 def index(request):
-
-        
+    
     return render(request,'index.html')
+
+def about(request):
+    
+    return render(request,'about.html')
 
 
 def contact(request):
-    return(request,'contact.html')
+    
+    return render(request,'contact.html')
 
-def pricing (request):
-    return(request,'pricing.html')
+def pricing(request):
+    
+    return render(request,'pricing.html')
 
-def services (request):
-    return(request,'services.html')
+def services(request):
+    
+    return render(request,'services.html')
 
-def about (request):
-    return(request,'about.html')
+
 
 
 #registration
@@ -91,7 +96,7 @@ def loginView(request):
 		else:
 			messages.error(request,"Invalid username or password.")
 	form = LoginForm()
-	return render(request=request, template_name="login.html",context= {"form":form})
+	return render(request=request, template_name="login.html", context= {"form":form})
 
 #create activation view
 def activate(request, uidb64, token):  
