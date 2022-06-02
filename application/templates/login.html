@@ -1,233 +1,226 @@
-
-
-  
-
-{% load crispy_forms_tags %}
-
-<!--Login--> 
-<!-- <div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
-</div> -->
-
-
-
-<!DOCTYPE html>
-<html>
-    
-<head>
-	<title>signup</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    {% block content %} 
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			/* background: #7abecc !important; */
-		}
-		.user_card {
-			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
-			background-color: rgba(255,255,255,0.06);
-			position: relative;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
-
-		}
-
-		.form_container {
-			margin-top: 20px;
-		}
-
-		#form-title{
-			color: #fff;
-		}
-		.login_btn {
-			width: 100%;
-			border: .2em solid white;
-			color: white !important;
-		}
-		.login_btn:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-		.login_container {
-			padding: 0 2rem;
-		}
-		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
-			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
-		}
-		.input_user,
-		.input_pass:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-
-
-        /* styling using glassmorphism */
-        .glass-panel {
-  color: #fff;
-  margin: 40px auto;
-  background-color: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  width: 100%;
-  border-radius: 15px;
-  padding: 32px;
-  backdrop-filter: blur(10px);
-}
-
-.glass-button {
-  display: inline-block;
-  padding: 24px 32px;
-  border: 0;
-  text-decoration: none;
-  border-radius: 15px;
-  background-color: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(30px);
-  color: rgba(255,255,255,0.8);
-  font-size: 14px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.glass-button:hover {
-  background-color: rgba(255,255,255,0.2);
-}
-
-/* Extra styles for demo */
-/* Article:  https://superdevresources.com/glassmorphism-ui-css/ */
-body {
-	background: url(https://media.istockphoto.com/photos/white-gray-gradient-background-abstract-background-picture-id648280890?k=20&m=648280890&s=612x612&w=0&h=PN92wqJgtgXFn1YOXFF-e8NpmGfE_MdUeuAgbBRvFdE=) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-.glass-panel {  
-  max-width: 600px;
-}
-
-.glass-button {
-  margin: 15px;
-  margin-top: 40px;
-}
-
-h1, h1 a {
-  min-height: 120px;
-  width: 90%;
-  max-width: 700px;
-  vertical-align: middle;
-  text-align: center;
-  margin: 0 auto;
-  text-decoration: none;
-  color: #fff;
-  padding-top: 60px;
-  color: rgba(255,255,255,0.8);
-}
-
-p {
-  width: 80%;
-  margin: 0 auto;
-  padding-bottom: 32px;
-  color: rgba(255,255,255,0.6);
-}
-
-	</style>
-
-</head>
- 
-<body>
-    <div class="glass-panel">
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<h3 style="color:#3598dc;" id="form-title">LOGIN</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-
-					<form method="POST" action="">
-						{% csrf_token %}
-
-						<div class="input-group mb-3">
-
-							{{form.username}}
-						</div>
-
-						<div class="input-group mb-2">
-
-							{{form.password}}
-						</div>
-						
-
-
-
-				   		<div class="d-flex justify-content-center mt-3 login_container">
-				 			<input style="background-color: #3598dc; border-radius: 10px;" class="btn login_btn" type="submit" value="Log in">
-				   		</div>
-
-					</form>
-				</div>
-
-				{{form.errors}}
-				
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						<span style="color: #0f3650;">Don't have an account?</span> <a href="{% url 'signup' %}" class="ml-2">Sign up</a>
+<section class="myform-area">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-8">
+				<div class="form-area login-form">
+					<div class="form-content">
+						<h2>Login</h2>
+						<p>As a Barber, it’s my job to help you look and feel great! What do you need today?</p>
+						<ul>
+							<li><a href="" class="facebook"><i class="fa fa-facebook-f"></i><span>facebook</span></a></li>
+							<li><a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a></li>
+						</ul>
 					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="/password_reset">Forgot password?</a>
+					<div class="form-input">
+						<h2>Login Form</h2>
+						<form>
+							<div class="form-group">
+								<input type="text"  id="" name="name" required>
+								<label>User Name</label>
+							</div>
+							<div class="form-group">
+								<input type="password" id="" name="password" required>
+								<label>password</label>
+							</div>
+							<div class="myform-button">
+								<button class="myform-btn">Login</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-	<script>
-						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-		//We start indexing at one because CSRF_token is considered and input field 
-		 */
+</section>
 
-		//Query All input fields
-		var form_fields = document.getElementsByTagName('input')
-        form_fields[1].placeholder='username';
-        form_fields[2].placeholder='username';
-        form_fields[2].placeholder='password';
-		form_fields[3].placeholder='Username';
-		form_fields[4].placeholder='Email';
-		form_fields[5].placeholder='Enter password';
-		form_fields[6].placeholder='Re-enter Password';
-       
+<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
 
+* {
+    margin:0;
+    padding:0
+}
+a,a:hover{
+  text-decoration: none;
+}
+.myform-area{
+  overflow: hidden;
+  padding: 60px 0;
+  background: #f4fffe;
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.myform-area .form-area{
+  position: relative;
+  background: rgba(103,58,183,0.7);
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  box-shadow: 0 0 40px 0 #e1e1e1;
+}
 
-		for (var field in form_fields){	
-			form_fields[field].className += ' form-control'
-		}
-	</script>
-</body>
-{% endblock %}
-</html>
+.myform-area .form-area .form-content,
+.myform-area .form-area .form-input{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+}
+
+.myform-area .form-area .form-content{
+  width: 50%;
+  padding: 40px 30px;
+}
+
+.myform-area .form-area .form-content h2{
+  color: #fff;
+}
+.myform-area .form-area .form-content p{
+  color: #fff;
+}
+.myform-area .form-area .form-content ul{
+  margin-top: 50px;
+}
+
+.myform-area .form-area .form-content ul li{
+  display: inline-block;
+  margin-right: 10px;
+}
+.myform-area .form-area .form-content a i{
+    margin-right: 10px;
+}
+
+.myform-area .form-area .form-content .facebook{
+  display: block;
+  padding: 10px 20px;
+  background: #3B579D;
+  color: #fff;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 4px;
+  border: 1px solid #3B579D;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.myform-area .form-area .form-content .facebook:hover,
+.myform-area .form-area .form-content .facebook:focus{
+    background: transparent;
+}
+
+.myform-area .form-area .form-content .twitter{
+  display: block;
+   padding: 10px 20px;
+   background: #00ACED;
+   color: #fff;
+   font-size: 15px;
+   text-transform: capitalize;
+   border-radius: 4px;
+   border: 1px solid #00ACED;
+   -webkit-transition: all .5s;
+   -o-transition: all .5s;
+   transition: all .5s;
+}
+
+.myform-area .form-area .form-content .twitter:hover,
+.myform-area .form-area .form-content .twitter:focus{
+    background: transparent;
+}
+.myform-area .form-area .form-input{
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 40px 0 #e1e1e1;
+}
+.myform-area .form-area .form-input{
+    width: 50%;
+    background: #fff;
+    padding: 40px 30px;
+}
+
+.myform-area .form-area .form-input h2{
+  margin-bottom: 20px;
+    color: #07315B;
+}
+
+.myform-area .form-area .form-input input{
+    position: relative;
+    height: 60px;
+    padding: 20px 0;
+}
+.myform-area .form-area .form-input textarea{
+    height: 120px;
+    padding: 20px 0;
+}
+
+.myform-area .form-area .form-input input,
+.myform-area .form-area .form-input textarea{
+    text-transform: capitalize;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #e1e1e1;
+    color: #07315B;
+}
+.myform-area .form-area .form-input form .form-group{
+    position: relative;
+}
+.myform-area .form-area .form-input form .form-group label{
+    position: absolute;
+    text-transform: capitalize;
+    top: 20px;
+    left: 0;
+    pointer-events: none;
+    font-size: 14px;
+    color: #595959;
+    margin-bottom: 0;
+    transition: all .6s;
+}
+.myform-area .form-area .form-input input:focus ~ label,
+.myform-area .form-area .form-input textarea:focus ~ label,
+.myform-area .form-area .form-input input:valid ~ label,
+.myform-area .form-area .form-input textarea:valid ~ label{
+    top: -5px;
+    opacity: 0;
+    left: 0;
+    color: rgba(103,58,183);
+    font-size: 12px;
+    color: #07315B;
+    font-weight: bold;
+}
+.myform-area .form-area .form-input input:focus,
+.myform-area .form-area .form-input textarea:focus,
+.myform-area .form-area .form-input input:valid,
+.myform-area .form-area .form-input textarea:valid{
+    border-bottom: 2px solid rgba(103,58,183);
+}
+.myform-area .form-area .form-text{
+    margin-top: 30px;
+}
+.myform-area .form-area .form-text span a{
+    color: rgba(103,58,183);
+}
+.myform-area .form-area .myform-button{
+    margin-top: 30px;
+}
+.myform-area .form-area .myform-button .myform-btn{
+    width: 100%;
+    height: 50px;
+    font-size: 17px;
+    background: rgba(103,58,183);
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+.myform-area .form-area .myform-button .myform-btn:hover{
+    background: #07315B;
+}
+</style>
