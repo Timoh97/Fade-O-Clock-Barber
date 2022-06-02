@@ -9,14 +9,14 @@ class SignupForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')  
         
 class LoginForm(forms.Form):
-    username = forms.CharField(
+    username = forms.CharField( help_text='Required',
         widget=forms.TextInput(
             attrs={
                 "class":"form-control"
             }
         )
     )
-    password = forms.CharField(
+    password = forms.CharField( help_text='Required',
         widget=forms.PasswordInput(
             attrs={
                 "class":"form-control"

@@ -1,13 +1,28 @@
-<form class="login-form">
+<form class="login-form"  method="post">
   <p class="login-text">
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-lock fa-stack-1x"></i>
     </span>
   </p>
-  <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
-  <input type="password" class="login-password" required="true" placeholder="Password" />
-  <input type="submit" name="Login" value="Register" class="login-submit" />
+  <!-- <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
+  <input type="password" class="login-password" required="true" placeholder="Password" /> -->
+
+  {% csrf_token %}  
+      {% for field in form %}  
+       
+        <p style="color: white">{{ field.label_tag }}</p>  
+        {{ field }}  
+        {% if field.help_text %}  
+          <small style="display: none ">{{ field.help_text }}</small>  
+        {% endif %}  
+        {% for error in field.errors %}  
+          <p style="color: red">{{ error }}</p>  
+        {% endfor %}  
+      </p>  
+      {% endfor %}
+  
+  <button type="submit" name="Login" value="Register" class="login-submit">Register</button>  
 </form>
 <a href="{% url 'login' %}" class="login-forgot-pass">proceed to login?</a>
 <div class="underlay-photo"></div>

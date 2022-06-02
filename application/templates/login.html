@@ -1,15 +1,28 @@
-<form class="login-form">
+{%extends "base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<form class="login-form" method="post" style="padding: 2em;">
   <p class="login-text">
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-lock fa-stack-1x"></i>
     </span>
   </p>
-  <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
-  <input type="password" class="login-password" required="true" placeholder="Password" />
-  <input type="submit" name="Login" value="Let Me In" class="login-submit" />
+ <p> {% csrf_token %}</p> 
+ {% for field in form %}  
+       
+ <p style="color: white">{{ field.label_tag }}</p>  
+ {{ field }}  
+ {% if field.help_text %}  
+   <small style="display: none ">{{ field.help_text }}</small>  
+ {% endif %}    
+</p>  
+{% endfor %}
+ 
+  <button type="submit" name="Login" value="Let Me In" class="login-submit">Let Me In</button>  
 </form>
-<a href="" class="login-forgot-pass">forgot password?</a>
+<p><a href="{% url 'signup' %}" class="login-forgot-pass">Register?</a></p> <br> <br>
+
 <div class="underlay-photo"></div>
 <div class="underlay-black"></div> 
 
@@ -159,3 +172,4 @@ input {
 }
 
 </style>
+{% endblock %}
