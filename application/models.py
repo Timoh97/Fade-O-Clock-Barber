@@ -42,6 +42,7 @@ class Appointment(models.Model):
   contact = models.IntegerField(max_length=30)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
+  admin_approved = models.BooleanField(default=False)
   
   
    # save profile method

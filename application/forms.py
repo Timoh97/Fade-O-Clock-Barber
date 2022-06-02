@@ -32,6 +32,6 @@ class LoginForm(forms.Form):
       username= forms.CharField(error_messages={'required': 'Please enter your usernamename'})
       
 
-    class Meta(UserCreationForm.Meta):
+      class Meta(UserCreationForm.Meta):
         model = User
-        fields=['first_name','last_name','username','email','password1','password2']
+        fields=['description','contact','username']
