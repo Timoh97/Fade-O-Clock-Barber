@@ -41,7 +41,7 @@
             <div class="col-sm-5">
               <div class="contact_main">
                 <div class="contact_left">
-                  <div class="call_text"><a href="#"><img src="{% static 'images/call-icon.png' %}"><span class="call_text_left">+01 1234567890</span></a></div>
+                  <div class="call_text"><a href="#"><img src="{% static 'images/call-icon.png' %}"><span class="call_text_left">+254 791 417 147</span></a></div>
                 </div>
                 <div class="contact_right">  
                   <div class="call_text">Make an appointment</div>
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div class="col-sm-2">
-              <div class="logo"><a href="index.html"><img src=" {% static 'images/logo.png' %}"></a></div> 
+              <div class="logo"><a href="{% url 'index' %}"><img src=" {% static 'images/logo.png' %}"></a></div> 
             </div>
             <div class="col-sm-5">
               <div class="contact_main">
@@ -72,11 +72,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">HOME</a>
-            <a class="nav-item nav-link" href="services.html">SERVICES</a>
-            <a class="nav-item nav-link" href="about.html">ABOUT</a>
-            <a class="nav-item nav-link" href="pricing.html">PRICING</a>
-            <a class="nav-item nav-link" href="contact.html">CONTACT US</a>
+            <a class="nav-item nav-link" href="{% url 'index' %}">HOME</a>
+            <a class="nav-item nav-link" href="{% url 'services' %}">SERVICES</a>
+            <a class="nav-item nav-link" href="{% url 'about' %}">ABOUT</a>
+            <a class="nav-item nav-link" href="{% url 'pricing' %}">PRICING</a>
+            <a class="nav-item nav-link" href="{% url 'contact' %}">CONTACT US</a>
           </div>
         </div>
       </nav>
