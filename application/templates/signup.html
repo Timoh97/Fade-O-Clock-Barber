@@ -7,9 +7,9 @@
   </p>
   <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
   <input type="password" class="login-password" required="true" placeholder="Password" />
-  <input type="submit" name="Login" value="Login" class="login-submit" />
+  <input type="submit" name="Login" value="Register" class="login-submit" />
 </form>
-<a href="#" class="login-forgot-pass">forgot password?</a>
+<a href="{% url 'login' %}" class="login-forgot-pass">proceed to login?</a>
 <div class="underlay-photo"></div>
 <div class="underlay-black"></div> 
 
