@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.sites.shortcuts import get_current_site
 from django.core import signing
 from django.template.loader import render_to_string
-
+from django.core.mail import send_mail
 #registration imports
 from django.http import HttpResponse  
 from django.shortcuts import render, redirect  
@@ -20,7 +20,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage  
 from django.contrib import messages
 
-
+from django.utils import timezone
 
 
 
@@ -57,24 +57,35 @@ def signup(request):
         form = SignupForm(request.POST)  
         if form.is_valid():  
             # save form in the memory not in database  
-            user = form.save(commit=False)  
-            user.is_active = False  
-            user.save()  
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            email = form.cleaned_data['email']
+            user = authenticate(username=username, password=raw_password) 
+            login(request,user)
+            # subject = 'Welcome to the EQUINOX!'
+            # message = f'Hi {user.username},\nWe officially welcome you to our growing community.See how you would like to shave, and contact us.\nRemember to enjoy the app!\n\nKind Regards,\nThe Management.'
+            # email_from = settings.EMAIL_HOST_USER
+            # email=email
+            # recepient_list = [user.email]
+            # send_mail(subject,message,email_from,recepient_list)
+            messages.success(request, 'Account created successfully! Check your email for a welcome mail')
             # to get the domain of the current site  
             current_site = get_current_site(request)  
-            mail_subject = 'Activation link has been sent to your email id'  
-            message = render_to_string('acc_active_email.html', {  
-                'user': user,  
-                'domain': current_site.domain,  
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                'token':account_activation_token.make_token(user),  
-            })  
-            to_email = form.cleaned_data.get('email')  
-            email = EmailMessage(  
-                        mail_subject, message, to=[to_email]  
-            )  
-            email.send()  
-            return HttpResponse('Please confirm your email address to complete the registration')  
+            # mail_subject = 'Activation link has been sent to your email id'  
+            # message = render_to_string('acc_active_email.html', {  
+            #     'user': user,  
+            #     'domain': current_site.domain,  
+            #     'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+            #     'token':account_activation_token.make_token(user),  
+            # })  
+            # to_email = form.cleaned_data.get('email')  
+            # email = EmailMessage(  
+            #             mail_subject, message, to=[to_email]  
+            # )  
+            # email.send()  
+            # return HttpResponse('Please confirm your email address to complete the registration') 
+        return redirect('/login') 
     else:  
         form = SignupForm()  
     return render(request, 'signup.html', {'form': form}) 
@@ -108,6 +119,7 @@ def activate(request, uidb64, token):
         user = None  
     if user is not None and account_activation_token.check_token(user, token):  
         user.is_active = True  
+        user.last_login = timezone.now()
         user.save()  
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')  
     else:  
