@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.http import HttpResponse  
 from django.shortcuts import render, redirect  
 from django.contrib.auth import login, authenticate  
-from .forms import SignupForm , LoginForm
+from .forms import *
 from django.contrib.sites.shortcuts import get_current_site  
 from django.utils.encoding import force_bytes, force_text  
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
@@ -21,6 +21,12 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 
 from django.utils import timezone
+
+#displaying appointment
+from django.urls import reverse_lazy
+
+from .models import *
+from bootstrap_modal_forms.generic import BSModalCreateView
 
 
 
@@ -47,8 +53,20 @@ def services(request):
     
     return render(request,'services.html')
 def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    appointment = Appointment.objects.filter(user_id=current_user.id).first()
+    return render(request,'profile.html',{'profile':profile,'appointment':appointment})
+
+def appointment(request):
+     if request.method == 'POST':
+        form = AppointmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+     form=AppointmentForm()
+     return render(request, 'appointment.html',context={'form':form})
     
-    return render(request,'profile.html')
 
 def styles(request):
     

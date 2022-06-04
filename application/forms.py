@@ -26,7 +26,7 @@ class LoginForm(forms.Form):
     
     
     
-    class AppointmentForm(UserCreationForm):
+class AppointmentForm(UserCreationForm):
       description= forms.CharField(error_messages={'required': 'Please enter appointment description'})
       contact= forms.IntegerField(error_messages={'required': 'Please enter your phone number'})
       username= forms.CharField(error_messages={'required': 'Please enter your usernamename'})

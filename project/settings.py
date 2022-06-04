@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'crispy_forms',
      'allauth',
+     'bootstrap_modal_forms',
+
 
 ]
 
