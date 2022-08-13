@@ -39,7 +39,7 @@ class Appointment(models.Model):
   
   description = models.TextField()
   username = models.CharField(max_length=50)
-  contact = models.IntegerField(max_length=30)
+  contact = models.CharField(max_length=50)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   admin_approved = models.BooleanField(default=False)

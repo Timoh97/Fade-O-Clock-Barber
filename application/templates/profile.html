@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>hello.</title>
+    <title>smartbarber</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.6.0/css/all.min.css"
@@ -23,22 +23,29 @@
   </head>
   <body>
     <div class="container-02">
-      <h2>Andre Firmansah</h2>
+     
       <div class="contain-card">
        
         <div class="glassmorphic-card1">
           <div class="imgBox">
             <i class="fa-solid fa-palette"></i>
-                
-          {% if profile.profile_pic %}
-          <img src="{{profile.profile_photo.url}}" width="70" alt="" style="border-radius: 50%;">
-          {%else%}
-          <img width="70" src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-              class="card-img-top" alt="My profile picture">
-          {% endif %} <br> <br>
+           
+          </div>
+
+
+          <div class="contentBox">        
+    {% if profile.profile_pic %}
+    <img src="{{profile.profile_photo.url}}" width="70" alt="" style="border-radius: 50%;">
+    {%else%}
+    <img width="70" src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+        class="center-block" alt="My profile picture">
+    {% endif %}
+
+
           
-          <div class="contentBox">
-            <h3 style="color: yellow;">Name:</h5><h3 style="color: white;">{{ user.username }}</h5>
+        
+            
+                 <h3 style="color: white;">{{ user.username }}</h5>
 
             <p>
                 {{ profile.description }}
@@ -53,14 +60,16 @@
           </div>
           <h3 style="color: white;">Appointment</h3>
           <div class="contentBox">
+           
             <h3 style="color: yellow;">Name:</h5><h3 style="color: white;">{{ appointment.user }}</h5>
-                {% if appointment.description %}
+                {% if appointment in appointment %}
                 <h4 style="color: white;">{{ appointment.description }}</h4>
                 {%else%}
                 <h4 style="color: white;">No appointment made or appointment not yet approved</h4>
                 {% endif %} <br> <br>
                <h6 style="color: white;">Your contact:</h6> <h6 style="color: yellow;">{{ appointment.contact }}</h6>
-            <a href="{% url 'index' %}"><span>Back</span></a>
+               
+               <a href="{% url 'index' %}"><span>Back</span></a>
           </div>
         </div>
       </div>

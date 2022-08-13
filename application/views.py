@@ -33,8 +33,14 @@ from bootstrap_modal_forms.generic import BSModalCreateView
 # Create your views here.
 
 def index(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("index")
+    form=AppointmentForm()
     
-    return render(request,'index.html')
+    return render(request,'index.html',context={'form':form})
 
 def about(request):
     

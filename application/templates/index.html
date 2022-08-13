@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -79,18 +80,18 @@
             <a class="nav-item nav-link" href="{% url 'contact' %}">CONTACT US</a>
             <a class="nav-item nav-link" href="{% url 'styles' %}">STYLES</a>
           </div>
-          <div class="dropdown">
-            <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
-              Profile
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'profile' %}">profile</a>
-              <a class="dropdown-item" href="#">log out</a>
-              <a class="dropdown-item" href="#">Api</a>
-            </div>
+
+        </div>
+        <div class="dropdown">
+          <button type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown">
+            Profile
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'profile' %}">profile</a>
+            <a class="dropdown-item" href="#">log out</a>
+            <a class="dropdown-item" href="#">Api</a>
           </div>
         </div>
-        
       </nav>
       <!-- header section end -->
       <!-- banner section start -->
@@ -118,7 +119,10 @@
                                 <h1 class="achive_text">Achieve Your Style</h1>
                                 <p class="best_text">The best place for your hairstyle</p>
                                 <p class="lorem_text">Best barbershop in town. You can’t beat the price and level of service from us! Both give phenomenal cuts and I can’t recommend this shop enough</p>
-                                <div class="appointment_bt"><a href="#">Make an appointment</a></div>
+                                <div class="appointment_bt"><a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Make Appointment
+                            </a>
+                                  
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -133,7 +137,8 @@
                                 <h1 class="achive_text">Achieve Your Style</h1>
                                 <p class="best_text">The best place for your hairstyle</p>
                                 <p class="lorem_text">Great barber shop. Walked in and they took me immediately without an appointment. Quick haircut, great service and reasonable price. (BN) will get you looking right.</p>
-                                <div class="appointment_bt"><a href="#">Make an appointment</a></div>
+                                <div class="appointment_bt"><a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Make Appointment
+                                </a></div>
                               </div>
                             </div>
                           </div>
@@ -148,7 +153,8 @@
                                 <h1 class="achive_text">Achieve Your Style</h1>
                                 <p class="best_text">The best place for your hairstyle</p>
                                 <p class="lorem_text">I’ve never been in the same barbershop until I came to this place. They are consistent and very talented in what they do. Highly recommended.</p>
-                                <div class="appointment_bt"><a href="#">Make an appointment</a></div>
+                                <div class="appointment_bt"><a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Make Appointment
+                                </a></div>
                               </div>
                             </div>
                           </div>
@@ -163,7 +169,8 @@
                                 <h1 class="achive_text">Achieve Your Style</h1>
                                 <p class="best_text">The best place for your hairstyle</p>
                                 <p class="lorem_text">Best haircut I have ever gotten! I have been coming here for a couple years and always get consistently great results. I did not know what I was missing out on before I started coming here.</p>
-                                <div class="appointment_bt"><a href="#">Make an appointment</a></div>
+                                <div class="appointment_bt"><a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">Make Appointment
+                                </a></div>
                               </div>
                             </div>
                           </div>
@@ -373,6 +380,10 @@
           <p class="copyright_text">Copyright 2022 All Right Reserved By.<a href="https://github.com/Timoh97/SmartBarbz/blob/master/LICENSE">Timothy Mugendi &#10084;&#65039;</a></p>
         </div>
       </div>
+
+
+
+      
       <!-- copyright section end -->
    <!-- Javascript files-->
    <script src="{% static 'js/jquery.min.js' %}"></script>  
@@ -412,5 +423,56 @@
         });
    </script>
    </body>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" 
+crossorigin="anonymous">
+
+
+<form action="" method="post"  style="padding: 2rem;" class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+<h4 class="modal-title w-100 font-weight-bold">Appointment</h4>
+
+<p> {% csrf_token %}</p> 
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% csrf_token %}  
+      {% for field in form %}  
+       
+        <p style="color: black">{{ field.label_tag }}</p>  
+        {{ field }}  
+        {% if field.help_text %}  
+          <small style="display: none ">{{ field.help_text }}</small>  
+        {% endif %}  
+        {% for error in field.errors %}  
+          <p style="color: red">{{ error }}</p>  
+        {% endfor %}  
+      </p>  
+      {% endfor %}
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" name="submit" style="color: white;" value="Submit" class="btn btn-dark">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
    </html>
+   
    {%endblock%}
+
+   

@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t1j!d=uf9oa2-8-g=nc49x69(d!l@t%rqc2(vl$e2+#hk1'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,19 +54,8 @@ INSTALLED_APPS = [
 
 ]
 
-# social accounts providers below
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
-# social accounts providers above
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,26 +91,28 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'hairstyles',
-           'USER': 'tim',
-           'PASSWORD': 'P@ssword',
-           'HOST': '',
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD'),
+           'HOST': config('DB_HOST'),
+           'PORT': '',
            
        }
        
    }
 
 cloudinary.config(
-    cloud_name='dq4bcn8d2',
-    api_key='941563347348349', 
-    api_secret='7lOtGNkeYJ_zKGF92-O1hWxcY-k',
+    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
+    api_key=config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+    secure=True
 )
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'onlinebizna4developers@gmail.com'
-EMAIL_HOST_PASSWORD = 'biznabizna12345'
+EMAIL_HOST_PASSWORD = 'biznabizna1234'
 EMAIL_PORT = 587
 
 
